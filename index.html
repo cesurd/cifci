@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Schlüsseldienst Ostfildern | Cifci im E center</title>
+<meta name="description" content="Schlüsselnotdienst Cifci in Ostfildern: Türöffnung, auch nachts, und Ersatzschlüssel am Tresen im E center.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#FBFBF9">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preload" href="fonts/antonio-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/host-grotesk-var.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+
+(function () {
+  var h = document.documentElement;
+  h.classList.add('js');
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var nativ = !!(window.CSS && CSS.supports && CSS.supports('animation-timeline: view()')) && !/[?&]tl=aus(&|$)/.test(location.search);
+  h.classList.add('lauf', nativ ? 'nativ' : 'rueck');
+})();
+</script>
+<style>
+
+@font-face {
+  font-family: "Antonio";
+  src: url("fonts/antonio-var.woff2") format("woff2");
+  font-weight: 100 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Host Grotesk";
+  src: url("fonts/host-grotesk-var.woff2") format("woff2");
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Antonio Ersatz";
+  src: local("Arial Narrow Bold"), local("ArialNarrow-Bold");
+  size-adjust: 79.3%;
+  ascent-override: 145.6%;
+  descent-override: 17.5%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Antonio Ersatz Breit";
+  src: local("Arial Bold"), local("Arial-BoldMT");
+  size-adjust: 65%;
+  ascent-override: 177.7%;
+  descent-override: 21.4%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Host Ersatz";
+  src: local("Arial"), local("ArialMT"), local("Helvetica Neue");
+  size-adjust: 103.1%;
+  ascent-override: 98.4%;
+  descent-override: 30.6%;
+  line-gap-override: 0%;
+}
+
+:root {
+  --weiss: #FBFBF9;
+  --karmin: #A50C28;
+  --karmin-tief: #7E0A1F;
+  --wein: #2A0B12;
+  --wein-schatten: #3A0B14;
+  --wa: #0B6B3C;
+  --schrift-schau: "Antonio", "Antonio Ersatz", "Antonio Ersatz Breit", "Arial Narrow", sans-serif;
+  --schrift-text: "Host Grotesk", "Host Ersatz", Arial, sans-serif;
+  --g: 64px;
+  --kopf: 72px;
+  --leiste: 0px;
+  color-scheme: light;
+}
+@media (max-width: 699.98px) {
+  :root { --g: 16px; --kopf: 60px; }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: var(--kopf); }
+body {
+  margin: 0;
+  background: var(--weiss);
+  color: var(--wein);
+  font-family: var(--schrift-text);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  -webkit-tap-highlight-color: rgb(165 12 40 / .15);
+  overflow-x: clip;
+}
+img { display: block; max-width: none; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--karmin); outline-offset: 3px; border-radius: 2px; }
+.nur-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.sprunglink { position: fixed; left: 12px; top: -60px; z-index: 60; padding: 10px 14px; background: var(--wein); color: #fff; border-radius: 8px; text-decoration: none; }
+.sprunglink:focus { top: 12px; }
+
+.knopf {
+  display: inline-flex; align-items: center; justify-content: center; gap: .55em;
+  min-height: 52px; padding: 0 1.25em;
+  border-radius: 8px; border: 1.5px solid transparent;
+  font: 600 1.0625rem/1.1 var(--schrift-text);
+  letter-spacing: .005em;
+  text-decoration: none; white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.knopf svg { width: 1.2em; height: 1.2em; flex: none; }
+.knopf-anruf { background: var(--karmin); color: #fff; }
+.knopf-wa { background: transparent; color: var(--wein); border-color: rgb(42 11 18 / .28); }
+.knopf-wa svg { color: var(--wa); }
+@media (hover: hover) {
+  .knopf-anruf:hover { background: var(--karmin-tief); }
+  .knopf-wa:hover { border-color: var(--wein); }
+}
+
+.kopf {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 40;
+  height: var(--kopf);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 0 var(--g);
+  background: var(--weiss);
+}
+.marke-link { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--wein); }
+.marke { width: 30px; height: 39px; flex: none; }
+.marke-haus { fill: var(--wein); }
+.marke-schluessel { fill: var(--karmin); }
+.marke-name { font: 650 1rem/1.15 var(--schrift-text); letter-spacing: -.005em; }
+.kopf-anruf {
+  display: inline-flex; align-items: center; gap: .5em;
+  min-height: 44px; padding: 0 1em;
+  border-radius: 8px; border: 1.5px solid rgb(165 12 40 / .35);
+  color: var(--karmin); text-decoration: none;
+  font: 650 1rem/1 var(--schrift-text); font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.kopf-anruf svg { width: 1.15em; height: 1.15em; }
+@media (hover: hover) { .kopf-anruf:hover { border-color: var(--karmin); } }
+@media (max-width: 699.98px) {
+  .marke { width: 26px; height: 34px; }
+  .marke-name { font-size: .9375rem; }
+  .marke-name span { display: block; }
+  .kopf-anruf { padding: 0 .8em; font-size: .9375rem; }
+}
+@media (max-width: 399.98px) {
+  .kopf { gap: 10px; }
+  .marke-link { gap: 8px; }
+  .marke-name { font-size: .84375rem; }
+  .kopf-anruf { padding: 0 .65em; font-size: .875rem; gap: .4em; }
+}
+@media (max-width: 339.98px) {
+  .marke-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
+
+.strecke { position: relative; }
+.portal { position: relative; }
+
+.tuer {
+  position: relative;
+  min-height: 100svh;
+  padding: var(--kopf) var(--g) 0;
+  display: flex; align-items: center;
+  container-type: inline-size;
+}
+.blatt {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(130% 95% at 14% 6%, #FFFFFF 0%, rgb(255 255 255 / 0) 55%),
+    var(--weiss);
+}
+
+.tafel {
+
+  --F: clamp(43px, min(calc(100cqw / 6.283), calc((100svh - var(--kopf) - 262px) / 1.9)), 232px);
+  --kd: calc(var(--F) * .74);
+  --kh: calc(var(--kd) * 1.94);
+  --oben: calc(2.5vh + var(--F) * .07);
+  position: relative;
+  width: fit-content;
+  padding: var(--oben) 0 6vh;
+}
+.titel {
+  margin: 0;
+  font: 700 var(--F)/.92 var(--schrift-schau);
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: var(--karmin);
+  font-kerning: normal;
+  margin-left: -.0356em;
+}
+.titel span { display: block; white-space: nowrap; }
+
+.zylinder {
+  position: absolute;
+  right: 0;
+  top: calc(var(--F) * 1.03 + var(--oben));
+  width: var(--kd); height: var(--kh);
+  overflow: hidden;
+  clip-path: url(#profil);
+  background: var(--wein-schatten);
+  transform-origin: 50% calc(var(--kd) / 2);
+}
+.fahrt { position: absolute; inset: 0; }
+
+.aufrecht { position: absolute; inset: 0; transform-origin: 50% calc(var(--kd) / 2); }
+.zylinder-bild { position: absolute; width: calc(var(--kd) * 3.22); height: calc(var(--kd) * 3.22); left: calc(var(--kd) * -1.11); top: calc(var(--kd) * -1.11); max-width: none; }
+.ansage { position: relative; margin-top: clamp(20px, 3.4vh, 36px); max-width: 34rem; }
+.unterzeile { margin: 0 0 22px; font-size: clamp(1.0625rem, .9rem + .45vw, 1.375rem); line-height: 1.45; color: var(--wein); text-wrap: pretty; }
+.knopfreihe { display: flex; flex-wrap: wrap; gap: 12px; }
+
+@media (min-width: 700px) and (max-aspect-ratio: 4/5) {
+  .tuer { align-items: flex-start; }
+  .tafel { --oben: 12svh; }
+}
+@media (max-width: 699.98px) {
+  .tuer { align-items: stretch; }
+  .tafel {
+    --F: 54px;
+
+    --kd: clamp(56px, min(40vw, (100svh - var(--kopf) - var(--oben) - 1.9 * var(--F) - 270px) / 1.735), 160px);
+    --oben: clamp(18px, 4.5svh, 40px);
+    width: 100%;
+    display: flex; flex-direction: column;
+    padding-bottom: clamp(16px, 3svh, 28px);
+  }
+  .tafel .titel { width: fit-content; }
+
+  .zylinder { right: 0; top: calc(var(--oben) + var(--F) * 1.888 + var(--kd) * .295 + 18px - var(--kd) / 2); }
+  .ansage { margin-top: auto; padding-top: calc(var(--F) * .048 + var(--kd) * 1.735 + 34px); }
+  .unterzeile { font-size: 1.0625rem; margin-bottom: 16px; }
+  .knopfreihe { flex-direction: column; gap: 10px; }
+  .knopfreihe .knopf { width: 100%; }
+}
+
+@media (max-width: 389.98px) {
+  .tafel { --F: 43px; }
+}
+
+.laden {
+  position: relative;
+  height: 82svh; min-height: 420px;
+  overflow: hidden;
+  container-type: size;
+  background: var(--wein-schatten);
+}
+.laden::before {
+  content: ""; position: absolute; z-index: 1; left: 0; right: 0; top: 0; height: calc(var(--kopf) * 2.2);
+  background: linear-gradient(to bottom, rgb(42 11 18 / .55), rgb(42 11 18 / 0));
+  pointer-events: none; opacity: 0;
+}
+.laden::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 52%;
+  background: linear-gradient(to top, rgb(42 11 18 / .82), rgb(42 11 18 / .45) 45%, rgb(42 11 18 / 0));
+  pointer-events: none;
+}
+@media (max-width: 699.98px) {
+  .laden::after { height: 64%; background: linear-gradient(to top, rgb(42 11 18 / .86), rgb(42 11 18 / .55) 50%, rgb(42 11 18 / 0)); }
+  .schluss-zeile { font-size: 1rem; gap: 10px 14px; }
+}
+.schluss {
+  position: absolute; z-index: 1; left: var(--g); right: var(--g); bottom: clamp(24px, 6svh, 64px);
+  color: #fff;
+}
+.schluss-titel { margin: 0 0 12px; font: 700 clamp(2rem, .9rem + 5.6vw, 4.5rem)/.95 var(--schrift-schau); text-transform: uppercase; letter-spacing: .005em; }
+.schluss-zeile { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; font-size: 1.0625rem; }
+.knopf-route { min-height: 44px; color: #fff; border-color: rgb(255 255 255 / .55); padding: 0 1em; }
+@media (hover: hover) { .knopf-route:hover { border-color: #fff; } }
+
+html.lauf .strecke { height: calc(100lvh + 160svh); view-timeline: --tuer block; view-timeline-inset: 0px; }
+html.lauf .portal {
+
+  --pers: 160vw; --zmax: 90vw;
+  position: sticky; top: 0;
+  height: 100lvh;
+  overflow: hidden; overflow: clip;
+  perspective: var(--pers);
+  perspective-origin: 50% 52%;
+  background: var(--wein-schatten);
+}
+html.lauf .laden { position: absolute; inset: 0; z-index: 1; height: auto; min-height: 0; }
+html.lauf .laden > .fahrt { transform-origin: 50% 52%; }
+
+.laden .laden-bild {
+  --bw: max(135.6cqw, 126cqh);
+  --bh: calc(var(--bw) / 1.1847);
+  position: absolute; inset: auto;
+  width: var(--bw); height: var(--bh);
+  left: calc(50cqw - .5 * var(--bw));
+  top: clamp(100cqh - var(--bh), 52cqh - .511 * var(--bh), 0px);
+  object-fit: fill;
+}
+
+@media (max-aspect-ratio: 4/5) {
+  .laden .laden-bild {
+    --bw: max(201cqw, 66cqh);
+    --bh: calc(var(--bw) / .6134);
+    left: calc(50cqw - .5 * var(--bw));
+    top: clamp(100cqh - var(--bh), 56cqh - .55 * var(--bh), 0px);
+  }
+  html.lauf .portal { --pers: 256vw; --zmax: 110vw; perspective-origin: 50% 56%; }
+  html.lauf .laden > .fahrt { transform-origin: 50% 56%; }
+}
+html.lauf .tuer-weg { position: absolute; inset: 0; z-index: 2; transform-style: preserve-3d; }
+html.lauf .tuer { position: absolute; inset: 0; min-height: 0; transform-origin: 0 50%; }
+
+html.lauf .laden > .schluss { opacity: 0; }
+html.lauf .schluss { bottom: calc(clamp(24px, 7svh, 72px) + 100lvh - 100svh + var(--leiste)); }
+
+html.lauf .roll { animation-duration: 1s; animation-timing-function: linear; animation-fill-mode: both; }
+html.nativ .roll { animation-duration: auto; animation-timeline: --tuer; animation-range: contain 0% contain 100%; }
+html.rueck .roll { animation-play-state: paused; animation-delay: calc(var(--p, 0) * -1s); }
+
+html.lauf .ansage { animation-name: ansage-weg; }
+html.lauf .zylinder { animation-name: zylinder-dreht; }
+html.lauf .aufrecht { animation-name: aufrecht-dreht; }
+html.lauf .tuer { animation-name: tuer-auf; }
+html.lauf .tuer-weg { animation-name: kamera; }
+html.lauf .laden > .fahrt { animation-name: laden-naeher; }
+html.lauf .laden > .schluss { animation-name: schluss-da; }
+
+@keyframes ansage-weg {
+  0%, 2% { opacity: 1; visibility: visible; }
+  12% { opacity: 0; visibility: visible; }
+  12.1%, 100% { opacity: 0; visibility: hidden; }
+}
+
+@keyframes zylinder-dreht {
+  0%, 3% { transform: rotate(0deg); opacity: 1; animation-timing-function: cubic-bezier(.55, 0, .3, 1); }
+  18% { transform: rotate(90deg); }
+  21% { opacity: 1; }
+  23.5%, 100% { transform: rotate(90deg); opacity: 0; }
+}
+@keyframes aufrecht-dreht {
+  0%, 3% { transform: rotate(0deg); animation-timing-function: cubic-bezier(.55, 0, .3, 1); }
+  18%, 100% { transform: rotate(-90deg); }
+}
+@keyframes tuer-auf {
+  0%, 23.5% { transform: rotateY(0deg); animation-timing-function: cubic-bezier(.2, .8, .3, 1); }
+  28% { transform: rotateY(6deg); animation-timing-function: cubic-bezier(.4, 0, .4, 1); }
+  84%, 100% { transform: rotateY(96deg); }
+}
+@keyframes kamera {
+  0%, 44% { transform: translateZ(0); animation-timing-function: cubic-bezier(.5, 0, .7, .9); }
+  96%, 100% { transform: translateZ(var(--zmax)); }
+}
+@keyframes laden-naeher {
+  0%, 23% { transform: scale(.94); animation-timing-function: cubic-bezier(.4, 0, .3, 1); }
+  95%, 100% { transform: none; }
+}
+@keyframes schluss-da {
+  0%, 84% { opacity: 0; visibility: hidden; }
+  84.1% { opacity: 0; visibility: visible; }
+  97%, 100% { opacity: 1; visibility: visible; }
+}
+html.lauf.strecke-an .tuer, html.lauf.strecke-an .tuer-weg, html.lauf.strecke-an .laden > .fahrt { will-change: transform; }
+
+html.kopf-foto .kopf { background: transparent; }
+html.kopf-foto .marke-link, html.kopf-foto .kopf-anruf { color: #fff; }
+html.kopf-foto .marke-haus, html.kopf-foto .marke-schluessel { fill: #fff; }
+html.kopf-foto .kopf-anruf { border-color: rgb(255 255 255 / .6); }
+html.kopf-foto .laden::before { opacity: 1; }
+.kopf, .marke-link, .kopf-anruf { transition: background-color .25s, color .25s, border-color .25s; }
+.marke-haus, .marke-schluessel { transition: fill .25s; }
+@media (prefers-reduced-motion: reduce) { .kopf, .marke-link, .kopf-anruf, .marke-haus, .marke-schluessel { transition: none; } }
+
+.weiter { position: relative; z-index: 2; background: var(--weiss); padding: clamp(64px, 11vw, 140px) var(--g) clamp(72px, 12vw, 160px); }
+.weiter h2 { margin: 0 0 18px; font: 700 clamp(2.75rem, 1.6rem + 4.4vw, 5.25rem)/.95 var(--schrift-schau); text-transform: uppercase; color: var(--karmin); letter-spacing: 0; text-wrap: balance; }
+.weiter p { margin: 0; max-width: 34rem; font-size: clamp(1.0625rem, .95rem + .35vw, 1.3125rem); line-height: 1.5; }
+
+.fuss { position: relative; z-index: 2; background: var(--karmin-tief); color: #fff; padding: 44px var(--g) calc(44px + var(--leiste)); }
+.fuss-raster { display: grid; grid-template-columns: auto 1fr auto; gap: 18px 48px; align-items: start; font-size: .9375rem; line-height: 1.55; }
+.fuss .marke-link { color: #fff; }
+.fuss .marke-haus, .fuss .marke-schluessel { fill: #fff; }
+.fuss address { font-style: normal; }
+.fuss a { color: #fff; text-underline-offset: 3px; }
+.fuss-links { display: flex; flex-wrap: wrap; gap: 6px 20px; justify-content: end; }
+.fuss-credit { grid-column: 1 / -1; margin: 6px 0 0; color: rgb(255 255 255 / .82); font-size: .875rem; }
+@media (max-width: 699.98px) {
+  .fuss-raster { grid-template-columns: 1fr; }
+  .fuss-links { justify-content: start; }
+}
+
+.leiste {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+  display: none;
+  gap: 10px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+  background: var(--weiss);
+  box-shadow: 0 -1px 0 rgb(42 11 18 / .08);
+}
+.leiste .knopf { flex: 1; min-height: 50px; padding: 0 .8em; }
+.leiste .knopf-wa { background: var(--wa); color: #fff; border-color: var(--wa); }
+.leiste .knopf-wa svg { color: #fff; }
+@media (max-width: 699.98px) {
+  .leiste { display: flex; transform: translateY(110%); transition: transform .28s cubic-bezier(.3, .7, .3, 1); }
+  html.leiste-da .leiste { transform: none; }
+  html.leiste-da { --leiste: 70px; }
+  html:not(.js) .leiste { transform: none; position: sticky; }
+}
+@media (prefers-reduced-motion: reduce) { .leiste { transition: none; } }
+</style>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Schlüsseldienst Ostfildern | Schlüsselnotdienst Cifci">
+<meta property="og:description" content="Türöffnung, auch nachts. Ersatzschlüssel am Tresen im E center, Liststraße 2.">
+<meta property="og:url" content="https://cesurd.github.io/cifci/">
+<meta property="og:image" content="https://cesurd.github.io/cifci/assets/img/vorschau-1200x630.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+</head>
+<body>
+<a class="sprunglink" href="#inhalt">Zum Inhalt</a>
+<svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+  <defs>
+
+    <clipPath id="profil" clipPathUnits="objectBoundingBox">
+      <path d="M.205 .46598A.5 .25773 0 1 1 .795 .46598L.795 .94845A.1 .05155 0 0 1 .695 1L.305 1A.1 .05155 0 0 1 .205 .94845Z"/>
+    </clipPath>
+  </defs>
+</svg>
+
+<header class="kopf">
+  <a class="marke-link" href="./" aria-label="Schlüsselnotdienst Cifci, Startseite">
+    <svg class="marke" viewBox="450 140 390 512" aria-hidden="true" focusable="false">
+      <path class="marke-haus" d="M455 246 646 147.5 790 222V170l44 22.5v355H715v-45h75V271l-144-76-146 75v232.5h83.5v45H455ZM455 572.5h127.5v45H455ZM715 572.5h119v45H715Z"/>
+      <path class="marke-schluessel" fill-rule="evenodd" d="M581.5 309 646 278.5l61.5 30.5V451h-34l6.5 6.5V475l-13.5 5v26h20v30h-20v11.5l13.5 6.5v36l-6.5 6 6.5 13-39 36-25-32.5V451h-34.5ZM616.5 344h24.5v23.5h-24.5ZM651 344h24v23.5h-24ZM616.5 378h24.5v23h-24.5ZM651 378h24v23h-24Z"/>
+    </svg>
+    <span class="marke-name"><span>Schlüsselnotdienst</span> <span>Cifci</span></span>
+  </a>
+  <a class="kopf-anruf" href="tel:+4917684861848" aria-label="0176 84861848 anrufen">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M5.2 3.5h3.2l1.6 4.3-2.1 1.4a11.4 11.4 0 0 0 6.9 6.9l1.4-2.1 4.3 1.6v3.2a1.8 1.8 0 0 1-1.9 1.8A16.6 16.6 0 0 1 3.4 5.4a1.8 1.8 0 0 1 1.8-1.9Z"/></svg>
+    0176 84861848
+  </a>
+</header>
+
+<main id="inhalt">
+  <section class="strecke" id="start" aria-labelledby="h1">
+    <div class="portal">
+      <div class="tuer-weg roll">
+        <div class="tuer roll">
+          <div class="blatt" aria-hidden="true"></div>
+          <div class="tafel">
+            <h1 class="titel" id="h1"><span>Schlüsseldienst</span> <span>Ostfildern</span></h1>
+            <div class="zylinder roll" aria-hidden="true">
+              <div class="aufrecht roll">
+                <picture>
+                  <source type="image/avif" srcset="img/zylinder-600.avif 600w, img/zylinder-1040.avif 1040w" sizes="(max-width: 699.98px) 129vw, 38vw">
+                  <img class="zylinder-bild" src="img/zylinder-600.webp" srcset="img/zylinder-600.webp 600w, img/zylinder-1040.webp 1040w" sizes="(max-width: 699.98px) 129vw, 38vw" width="600" height="600" decoding="async" fetchpriority="high" alt="">
+                </picture>
+              </div>
+            </div>
+            <div class="ansage roll">
+              <p class="unterzeile">Tür zugefallen oder abgeschlossen? Wir öffnen, auch nachts. Den Ersatzschlüssel machen wir am Tresen im E&nbsp;center.</p>
+              <div class="knopfreihe">
+                <a class="knopf knopf-anruf" href="tel:+4917684861848">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M5.2 3.5h3.2l1.6 4.3-2.1 1.4a11.4 11.4 0 0 0 6.9 6.9l1.4-2.1 4.3 1.6v3.2a1.8 1.8 0 0 1-1.9 1.8A16.6 16.6 0 0 1 3.4 5.4a1.8 1.8 0 0 1 1.8-1.9Z"/></svg>
+                  0176 84861848 anrufen</a>
+                <a class="knopf knopf-wa" href="https://wa.me/4917684861848">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 3.6a8.4 8.4 0 0 0-7.3 12.6L3.6 20.4l4.3-1.1A8.4 8.4 0 1 0 12 3.6Z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M8.8 9.4c.4 2.6 2.6 4.9 5.6 5.7"/></svg>
+                  WhatsApp schreiben</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="laden">
+        <div class="fahrt roll">
+          <picture>
+            <source media="(max-aspect-ratio: 4/5)" type="image/avif" srcset="img/laden-hoch-800.avif 800w, img/laden-hoch-1200.avif 1200w, img/laden-hoch-1600.avif 1600w, img/laden-hoch-1855.avif 1855w" sizes="max(201vw, 66vh)">
+            <source media="(max-aspect-ratio: 4/5)" type="image/webp" srcset="img/laden-hoch-800.webp 800w, img/laden-hoch-1200.webp 1200w, img/laden-hoch-1600.webp 1600w, img/laden-hoch-1855.webp 1855w" sizes="max(201vw, 66vh)">
+            <source type="image/avif" srcset="img/laden-quer-1600.avif 1600w, img/laden-quer-2400.avif 2400w, img/laden-quer-3226.avif 3226w" sizes="max(136vw, 126vh)">
+            <img class="laden-bild" src="img/laden-quer-1600.webp" srcset="img/laden-quer-1600.webp 1600w, img/laden-quer-2400.webp 2400w, img/laden-quer-3226.webp 3226w" sizes="max(136vw, 126vh)" width="1600" height="1350" decoding="async" fetchpriority="low" alt="Der Laden von Schlüsselnotdienst Cifci im E center: die Theke, dahinter die Schlüsselwand und die roten Schilder Gravur Stempel, Schuh und Schlüsselservice, Schuhreparatur.">
+          </picture>
+        </div>
+        <div class="schluss roll">
+          <p class="schluss-titel">Am Tresen im E&nbsp;center</p>
+          <p class="schluss-zeile"><span>Liststraße 2, 73760 Ostfildern, Erdgeschoss</span>
+            <a class="knopf knopf-route" href="https://www.google.com/maps/dir/?api=1&amp;destination=Liststra%C3%9Fe%202%2C%2073760%20Ostfildern" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 21s-6.5-6.1-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 14.9 12 21 12 21Z"/><circle cx="12" cy="9.8" r="2.3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>Route<span class="nur-sr"> (Google Maps, neuer Tab)</span></a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="weiter" id="preise" aria-labelledby="preise-h2">
+    <h2 id="preise-h2">Zugefallen oder abgeschlossen?</h2>
+    <p>Ist die Tür nur zugefallen, hält sie die Falle. Ist sie abgeschlossen, hält auch der Riegel. Wir öffnen&nbsp;beides.</p>
+  </section>
+</main>
+
+<footer class="fuss" id="kontakt">
+  <div class="fuss-raster">
+    <a class="marke-link" href="./">
+      <svg class="marke" viewBox="450 140 390 512" aria-hidden="true" focusable="false">
+        <path class="marke-haus" d="M455 246 646 147.5 790 222V170l44 22.5v355H715v-45h75V271l-144-76-146 75v232.5h83.5v45H455ZM455 572.5h127.5v45H455ZM715 572.5h119v45H715Z"/>
+        <path class="marke-schluessel" fill-rule="evenodd" d="M581.5 309 646 278.5l61.5 30.5V451h-34l6.5 6.5V475l-13.5 5v26h20v30h-20v11.5l13.5 6.5v36l-6.5 6 6.5 13-39 36-25-32.5V451h-34.5ZM616.5 344h24.5v23.5h-24.5ZM651 344h24v23.5h-24ZM616.5 378h24.5v23h-24.5ZM651 378h24v23h-24Z"/>
+      </svg>
+      <span class="marke-name">Schlüsselnotdienst Cifci</span>
+    </a>
+    <address>Laden im E&nbsp;center, Erdgeschoss<br>Liststraße 2, 73760 Ostfildern<br><a href="tel:+4917684861848">0176 84861848</a></address>
+    <nav class="fuss-links" aria-label="Rechtliches">
+      <a href="impressum/">Impressum</a>
+      <a href="datenschutz/">Datenschutz</a>
+    </nav>
+    <p class="fuss-credit">Website by <a href="https://rexfortis.de">Rex Fortis</a></p>
+  </div>
+</footer>
+
+<nav class="leiste" aria-label="Schnellkontakt">
+  <a class="knopf knopf-anruf" href="tel:+4917684861848">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M5.2 3.5h3.2l1.6 4.3-2.1 1.4a11.4 11.4 0 0 0 6.9 6.9l1.4-2.1 4.3 1.6v3.2a1.8 1.8 0 0 1-1.9 1.8A16.6 16.6 0 0 1 3.4 5.4a1.8 1.8 0 0 1 1.8-1.9Z"/></svg>
+    Anrufen</a>
+  <a class="knopf knopf-wa" href="https://wa.me/4917684861848">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 3.6a8.4 8.4 0 0 0-7.3 12.6L3.6 20.4l4.3-1.1A8.4 8.4 0 1 0 12 3.6Z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M8.8 9.4c.4 2.6 2.6 4.9 5.6 5.7"/></svg>
+    WhatsApp</a>
+</nav>
+
+<script>
+(function () {
+  var d = document, h = d.documentElement;
+  var strecke = d.querySelector('.strecke');
+  var knopfreihe = d.querySelector('.ansage .knopfreihe');
+  var lauf = h.classList.contains('lauf'), nativ = h.classList.contains('nativ');
+
+  var wartet = false;
+  function stellen() {
+    wartet = false;
+    if (lauf) {
+      var weg = strecke.offsetHeight - innerHeight;
+      var p = weg > 0 ? (scrollY - strecke.offsetTop) / weg : 1;
+      p = p < 0 ? 0 : p > 1 ? 1 : p;
+      if (!nativ) strecke.style.setProperty('--p', p.toFixed(4));
+      h.classList.toggle('leiste-da', p >= .4);
+      h.classList.toggle('strecke-an', p > 0 && p < 1);
+
+      h.classList.toggle('kopf-foto', p > .84 && strecke.getBoundingClientRect().bottom > innerHeight * .55);
+    } else {
+      h.classList.toggle('leiste-da', knopfreihe.getBoundingClientRect().bottom < 0);
+    }
+  }
+  stellen();
+  addEventListener('scroll', function () { if (!wartet) { wartet = true; requestAnimationFrame(stellen); } }, { passive: true });
+  addEventListener('resize', stellen);
+})();
+</script>
+</body>
+</html>
