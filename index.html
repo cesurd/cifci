@@ -93,9 +93,11 @@ body {
   -webkit-tap-highlight-color: rgb(165 12 40 / .15);
   overflow-x: clip;
 }
+::selection { background: rgb(165 12 40 / .18); color: var(--wein); }
 img { display: block; max-width: none; }
 a { color: inherit; }
 :focus-visible { outline: 3px solid var(--karmin); outline-offset: 3px; border-radius: 2px; }
+.fuss :focus-visible, .schluss :focus-visible, html.kopf-foto .kopf :focus-visible { outline-color: #fff; }
 .nur-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .sprunglink { position: fixed; left: 12px; top: -60px; z-index: 60; padding: 10px 14px; background: var(--wein); color: #fff; border-radius: 8px; text-decoration: none; }
 .sprunglink:focus { top: 12px; }
@@ -172,12 +174,16 @@ a { color: inherit; }
     var(--weiss);
 }
 
+.tuerblatt { display: none; }
+
 .tafel {
 
   --F: clamp(43px, min(calc(100cqw / 6.283), calc((100svh - var(--kopf) - 262px) / 1.9)), 232px);
-  --kd: calc(var(--F) * .74);
+
+  --kd: clamp(calc(var(--F) * .6), max(10.96vw, 10.19lvh), calc(var(--F) * 1.05));
   --kh: calc(var(--kd) * 1.94);
   --oben: calc(2.5vh + var(--F) * .07);
+  --ztop: calc(var(--F) * 1.03 + var(--oben));
   position: relative;
   width: fit-content;
   padding: var(--oben) 0 6vh;
@@ -196,17 +202,18 @@ a { color: inherit; }
 .zylinder {
   position: absolute;
   right: 0;
-  top: calc(var(--F) * 1.03 + var(--oben));
+  top: var(--ztop);
   width: var(--kd); height: var(--kh);
   overflow: hidden;
   clip-path: url(#profil);
   background: var(--wein-schatten);
-  transform-origin: 50% calc(var(--kd) / 2);
 }
-.fahrt { position: absolute; inset: 0; }
 
-.aufrecht { position: absolute; inset: 0; transform-origin: 50% calc(var(--kd) / 2); }
-.zylinder-bild { position: absolute; width: calc(var(--kd) * 3.22); height: calc(var(--kd) * 3.22); left: calc(var(--kd) * -1.11); top: calc(var(--kd) * -1.11); max-width: none; }
+.zylinder-bild {
+  position: absolute; max-width: none;
+  width: calc(var(--kd) * 1.9473); height: calc(var(--kd) * 3.6917);
+  left: calc(var(--kd) * -.06795); top: calc(var(--kd) * -.47363);
+}
 .ansage { position: relative; margin-top: clamp(20px, 3.4vh, 36px); max-width: 34rem; }
 .unterzeile { margin: 0 0 22px; font-size: clamp(1.0625rem, .9rem + .45vw, 1.375rem); line-height: 1.45; color: var(--wein); text-wrap: pretty; }
 .knopfreihe { display: flex; flex-wrap: wrap; gap: 12px; }
@@ -219,17 +226,21 @@ a { color: inherit; }
   .tuer { align-items: stretch; }
   .tafel {
     --F: 54px;
-
-    --kd: clamp(56px, min(40vw, (100svh - var(--kopf) - var(--oben) - 1.9 * var(--F) - 270px) / 1.735), 160px);
     --oben: clamp(18px, 4.5svh, 40px);
+    --unten: clamp(16px, 3svh, 28px);
+    --ansage-h: 206px;
+    --luft: 24px;
+
+    --ztop: calc(var(--oben) + var(--F) * 1.864 + 6px);
+    --platz: calc(100svh - var(--kopf) - var(--ztop) - var(--luft) - var(--ansage-h) - var(--unten));
+
+    --kd: clamp(64px, min(51.45vw, var(--platz) / 1.94), 240px);
     width: 100%;
     display: flex; flex-direction: column;
-    padding-bottom: clamp(16px, 3svh, 28px);
+    padding-bottom: var(--unten);
   }
   .tafel .titel { width: fit-content; }
-
-  .zylinder { right: 0; top: calc(var(--oben) + var(--F) * 1.888 + var(--kd) * .295 + 18px - var(--kd) / 2); }
-  .ansage { margin-top: auto; padding-top: calc(var(--F) * .048 + var(--kd) * 1.735 + 34px); }
+  .ansage { margin-top: calc(var(--ztop) + var(--kh) + var(--luft) - var(--oben) - 1.84 * var(--F)); max-width: none; }
   .unterzeile { font-size: 1.0625rem; margin-bottom: 16px; }
   .knopfreihe { flex-direction: column; gap: 10px; }
   .knopfreihe .knopf { width: 100%; }
@@ -238,6 +249,24 @@ a { color: inherit; }
 @media (max-width: 389.98px) {
   .tafel { --F: 43px; }
 }
+@media (max-width: 359.98px) {
+  .tafel { --ansage-h: 231px; }
+}
+
+@media (max-width: 699.98px) and (max-height: 620px) {
+  .tafel {
+    --luft: 18px;
+    --kd: clamp(56px, min(100cqw - var(--F) * 4.168 - 12px, (100svh - var(--kopf) - var(--oben) - var(--F) * 1.864 - 4px - var(--luft) - var(--ansage-h) - var(--unten)) / 1.735), 160px);
+    --ztop: calc(var(--oben) + var(--F) * 1.864 + 4px - var(--kd) * .205);
+  }
+}
+
+@media (max-width: 699.98px) and (min-height: 760px) {
+  .zylinder-bild {
+    width: calc(var(--kd) * 1.0714); height: calc(var(--kd) * 2.0313);
+    left: calc(var(--kd) * -.02455); top: calc(var(--kd) * -.03571);
+  }
+}
 
 .laden {
   position: relative;
@@ -245,11 +274,6 @@ a { color: inherit; }
   overflow: hidden;
   container-type: size;
   background: var(--wein-schatten);
-}
-.laden::before {
-  content: ""; position: absolute; z-index: 1; left: 0; right: 0; top: 0; height: calc(var(--kopf) * 2.2);
-  background: linear-gradient(to bottom, rgb(42 11 18 / .55), rgb(42 11 18 / 0));
-  pointer-events: none; opacity: 0;
 }
 .laden::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 52%;
@@ -260,28 +284,21 @@ a { color: inherit; }
   .laden::after { height: 64%; background: linear-gradient(to top, rgb(42 11 18 / .86), rgb(42 11 18 / .55) 50%, rgb(42 11 18 / 0)); }
   .schluss-zeile { font-size: 1rem; gap: 10px 14px; }
 }
+
+@media (max-width: 359.98px) {
+  .laden::after { background: linear-gradient(to top, rgb(42 11 18 / .88), rgb(42 11 18 / .66) 50%, rgb(42 11 18 / 0)); }
+}
 .schluss {
   position: absolute; z-index: 1; left: var(--g); right: var(--g); bottom: clamp(24px, 6svh, 64px);
   color: #fff;
 }
 .schluss-titel { margin: 0 0 12px; font: 700 clamp(2rem, .9rem + 5.6vw, 4.5rem)/.95 var(--schrift-schau); text-transform: uppercase; letter-spacing: .005em; }
-.schluss-zeile { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; font-size: 1.0625rem; }
+.schluss-zeile { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; font-size: 1.0625rem; }
+.schluss-zeile p { margin: 0; }
 .knopf-route { min-height: 44px; color: #fff; border-color: rgb(255 255 255 / .55); padding: 0 1em; }
 @media (hover: hover) { .knopf-route:hover { border-color: #fff; } }
 
-html.lauf .strecke { height: calc(100lvh + 160svh); view-timeline: --tuer block; view-timeline-inset: 0px; }
-html.lauf .portal {
-
-  --pers: 160vw; --zmax: 90vw;
-  position: sticky; top: 0;
-  height: 100lvh;
-  overflow: hidden; overflow: clip;
-  perspective: var(--pers);
-  perspective-origin: 50% 52%;
-  background: var(--wein-schatten);
-}
-html.lauf .laden { position: absolute; inset: 0; z-index: 1; height: auto; min-height: 0; }
-html.lauf .laden > .fahrt { transform-origin: 50% 52%; }
+.fahrt { position: absolute; inset: 0; }
 
 .laden .laden-bild {
   --bw: max(135.6cqw, 126cqh);
@@ -293,19 +310,47 @@ html.lauf .laden > .fahrt { transform-origin: 50% 52%; }
   object-fit: fill;
 }
 
-@media (max-aspect-ratio: 4/5) {
+@media (max-aspect-ratio: 2/3) {
   .laden .laden-bild {
-    --bw: max(201cqw, 66cqh);
-    --bh: calc(var(--bw) / .6134);
-    left: calc(50cqw - .5 * var(--bw));
-    top: clamp(100cqh - var(--bh), 56cqh - .55 * var(--bh), 0px);
+    --bw: 135.444cqw;
+    --bh: calc(var(--bw) * 1.936);
+    left: calc(50cqw - .5484 * var(--bw));
+    top: clamp(100cqh - var(--bh), 56cqh - 140.995cqw, 0px);
   }
-  html.lauf .portal { --pers: 256vw; --zmax: 110vw; perspective-origin: 50% 56%; }
   html.lauf .laden > .fahrt { transform-origin: 50% 56%; }
 }
-html.lauf .tuer-weg { position: absolute; inset: 0; z-index: 2; transform-style: preserve-3d; }
-html.lauf .tuer { position: absolute; inset: 0; min-height: 0; transform-origin: 0 50%; }
 
+html.lauf .strecke { height: calc(100lvh + 145svh); view-timeline: --tuer block; view-timeline-inset: 0px; }
+html.lauf .portal {
+  position: sticky; top: 0;
+  height: 100lvh;
+  overflow: hidden; overflow: clip;
+  background: var(--wein-schatten);
+}
+html.lauf .laden { position: absolute; inset: 0; z-index: 1; height: auto; min-height: 0; }
+html.lauf .laden > .fahrt { transform-origin: 50% 52%; }
+@media (max-aspect-ratio: 2/3) { html.lauf .laden > .fahrt { transform-origin: 50% 56%; } }
+
+html.lauf .tuer { position: absolute; inset: 0; z-index: 2; min-height: 0; }
+html.lauf .blatt { display: none; }
+html.lauf .tuerblatt { display: block; position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+
+html.lauf .tuer::after {
+  content: ""; position: absolute; top: 0; bottom: 0; left: 100%;
+  width: clamp(26px, 3vw, 46px);
+  background:
+    linear-gradient(to right, rgb(58 11 20 / .62) 0 var(--stirn), rgb(58 11 20 / 0) 0),
+    linear-gradient(to right, rgb(42 11 18 / .5) var(--stirn), rgb(42 11 18 / .2) 36%, rgb(42 11 18 / 0));
+  --stirn: 3px;
+  pointer-events: none;
+}
+@media (max-width: 699.98px) { html.lauf .tuer::after { --stirn: 2px; } }
+
+html.lauf .zylinder { background: none; clip-path: none; visibility: hidden; }
+html.lauf .zylinder-bild { display: none; }
+
+.profil-ort { transform: translate(calc(var(--zx, 0) * 1px), calc(var(--zy, 0) * 1px)) scale(var(--zd, 0)); }
+.profil-form { transform-box: fill-box; transform-origin: 50% 25.773%; }
 html.lauf .laden > .schluss { opacity: 0; }
 html.lauf .schluss { bottom: calc(clamp(24px, 7svh, 72px) + 100lvh - 100svh + var(--leiste)); }
 
@@ -313,58 +358,60 @@ html.lauf .roll { animation-duration: 1s; animation-timing-function: linear; ani
 html.nativ .roll { animation-duration: auto; animation-timeline: --tuer; animation-range: contain 0% contain 100%; }
 html.rueck .roll { animation-play-state: paused; animation-delay: calc(var(--p, 0) * -1s); }
 
-html.lauf .ansage { animation-name: ansage-weg; }
-html.lauf .zylinder { animation-name: zylinder-dreht; }
-html.lauf .aufrecht { animation-name: aufrecht-dreht; }
-html.lauf .tuer { animation-name: tuer-auf; }
-html.lauf .tuer-weg { animation-name: kamera; }
-html.lauf .laden > .fahrt { animation-name: laden-naeher; }
+html.lauf .profil-form { animation-name: profil-dreht; }
+html.lauf .tuer { animation-name: tuer-schiebt; }
+html.lauf .laden > .fahrt { animation-name: laden-schwenk, laden-naeher; }
 html.lauf .laden > .schluss { animation-name: schluss-da; }
 
-@keyframes ansage-weg {
-  0%, 2% { opacity: 1; visibility: visible; }
-  12% { opacity: 0; visibility: visible; }
-  12.1%, 100% { opacity: 0; visibility: hidden; }
+@keyframes profil-dreht {
+  0%, 2% { transform: rotate(0deg); animation-timing-function: cubic-bezier(.55, 0, .35, 1); }
+  17%, 100% { transform: rotate(90deg); }
 }
 
-@keyframes zylinder-dreht {
-  0%, 3% { transform: rotate(0deg); opacity: 1; animation-timing-function: cubic-bezier(.55, 0, .3, 1); }
-  18% { transform: rotate(90deg); }
-  21% { opacity: 1; }
-  23.5%, 100% { transform: rotate(90deg); opacity: 0; }
+@keyframes tuer-schiebt {
+  0%, 11.5% { transform: translateX(0); animation-timing-function: cubic-bezier(.15, 0, .55, .9); }
+  79%, 100% { transform: translateX(calc(-100% - 44px)); }
 }
-@keyframes aufrecht-dreht {
-  0%, 3% { transform: rotate(0deg); animation-timing-function: cubic-bezier(.55, 0, .3, 1); }
-  18%, 100% { transform: rotate(-90deg); }
+
+@keyframes laden-schwenk {
+  0%, 11.5% { translate: calc(var(--tx, 0) * 1px) calc(var(--ty, 0) * 1px); animation-timing-function: cubic-bezier(.15, 0, .55, .9); }
+  79%, 100% { translate: 0 0; }
 }
-@keyframes tuer-auf {
-  0%, 23.5% { transform: rotateY(0deg); animation-timing-function: cubic-bezier(.2, .8, .3, 1); }
-  28% { transform: rotateY(6deg); animation-timing-function: cubic-bezier(.4, 0, .4, 1); }
-  84%, 100% { transform: rotateY(96deg); }
-}
-@keyframes kamera {
-  0%, 44% { transform: translateZ(0); animation-timing-function: cubic-bezier(.5, 0, .7, .9); }
-  96%, 100% { transform: translateZ(var(--zmax)); }
-}
+
 @keyframes laden-naeher {
-  0%, 23% { transform: scale(.94); animation-timing-function: cubic-bezier(.4, 0, .3, 1); }
-  95%, 100% { transform: none; }
+  0%, 53% { scale: var(--s0, 1.06); animation-timing-function: cubic-bezier(.4, 0, .3, 1); }
+  92%, 100% { scale: 1; }
 }
+
 @keyframes schluss-da {
-  0%, 84% { opacity: 0; visibility: hidden; }
-  84.1% { opacity: 0; visibility: visible; }
-  97%, 100% { opacity: 1; visibility: visible; }
+  0%, 68% { opacity: 0; }
+  84%, 100% { opacity: 1; }
 }
-html.lauf.strecke-an .tuer, html.lauf.strecke-an .tuer-weg, html.lauf.strecke-an .laden > .fahrt { will-change: transform; }
+html.lauf .laden > .schluss { pointer-events: none; }
+html.lauf.schluss-an .laden > .schluss { pointer-events: auto; }
+html.lauf.strecke-an .tuer, html.lauf.strecke-an .laden > .fahrt { will-change: transform, translate, scale; }
+
+html.kopf-frei .kopf { background: transparent; }
+html.kopf-frei .kopf-anruf { background: var(--weiss); }
+html.kopf-frei .kopf .marke-link { border-radius: 8px; padding: 5px 12px 5px 8px; margin-left: -8px; }
+html.marke-flaeche .kopf .marke-link { background: #fff; }
 
 html.kopf-foto .kopf { background: transparent; }
+html.kopf-foto .kopf-anruf { background: transparent; }
 html.kopf-foto .marke-link, html.kopf-foto .kopf-anruf { color: #fff; }
 html.kopf-foto .marke-haus, html.kopf-foto .marke-schluessel { fill: #fff; }
 html.kopf-foto .kopf-anruf { border-color: rgb(255 255 255 / .6); }
-html.kopf-foto .laden::before { opacity: 1; }
-.kopf, .marke-link, .kopf-anruf { transition: background-color .25s, color .25s, border-color .25s; }
-.marke-haus, .marke-schluessel { transition: fill .25s; }
-@media (prefers-reduced-motion: reduce) { .kopf, .marke-link, .kopf-anruf, .marke-haus, .marke-schluessel { transition: none; } }
+
+.kopf::before {
+  content: ""; position: absolute; z-index: -1; left: var(--kante, 0px); right: 0; top: 0; height: calc(var(--kopf) * 2.2);
+  background: linear-gradient(to bottom, rgb(42 11 18 / .78), rgb(42 11 18 / .5) 45%, rgb(42 11 18 / 0));
+  pointer-events: none; opacity: 0;
+}
+html.kopf-foto .kopf::before { opacity: 1; }
+.kopf, .marke-link, .kopf-anruf { transition: background-color .2s, color .2s, border-color .2s; }
+.marke-haus, .marke-schluessel { transition: fill .2s; }
+.kopf::before { transition: opacity .2s; }
+@media (prefers-reduced-motion: reduce) { .kopf, .marke-link, .kopf-anruf, .marke-haus, .marke-schluessel, .kopf::before { transition: none; } }
 
 .weiter { position: relative; z-index: 2; background: var(--weiss); padding: clamp(64px, 11vw, 140px) var(--g) clamp(72px, 12vw, 160px); }
 .weiter h2 { margin: 0 0 18px; font: 700 clamp(2.75rem, 1.6rem + 4.4vw, 5.25rem)/.95 var(--schrift-schau); text-transform: uppercase; color: var(--karmin); letter-spacing: 0; text-wrap: balance; }
@@ -396,8 +443,9 @@ html.kopf-foto .laden::before { opacity: 1; }
 @media (max-width: 699.98px) {
   .leiste { display: flex; transform: translateY(110%); transition: transform .28s cubic-bezier(.3, .7, .3, 1); }
   html.leiste-da .leiste { transform: none; }
-  html.leiste-da { --leiste: 70px; }
+  html.leiste-da { --leiste: 70px; scroll-padding-bottom: calc(var(--leiste) + env(safe-area-inset-bottom) + 12px); }
   html:not(.js) .leiste { transform: none; position: sticky; }
+  html:not(.js) .tafel { --unten: calc(78px + env(safe-area-inset-bottom)); }
 }
 @media (prefers-reduced-motion: reduce) { .leiste { transition: none; } }
 </style>
@@ -437,29 +485,44 @@ html.kopf-foto .laden::before { opacity: 1; }
 <main id="inhalt">
   <section class="strecke" id="start" aria-labelledby="h1">
     <div class="portal">
-      <div class="tuer-weg roll">
-        <div class="tuer roll">
-          <div class="blatt" aria-hidden="true"></div>
-          <div class="tafel">
-            <h1 class="titel" id="h1"><span>Schlüsseldienst</span> <span>Ostfildern</span></h1>
-            <div class="zylinder roll" aria-hidden="true">
-              <div class="aufrecht roll">
-                <picture>
-                  <source type="image/avif" srcset="img/zylinder-600.avif 600w, img/zylinder-1040.avif 1040w" sizes="(max-width: 699.98px) 129vw, 38vw">
-                  <img class="zylinder-bild" src="img/zylinder-600.webp" srcset="img/zylinder-600.webp 600w, img/zylinder-1040.webp 1040w" sizes="(max-width: 699.98px) 129vw, 38vw" width="600" height="600" decoding="async" fetchpriority="high" alt="">
-                </picture>
-              </div>
-            </div>
-            <div class="ansage roll">
-              <p class="unterzeile">Tür zugefallen oder abgeschlossen? Wir öffnen, auch nachts. Den Ersatzschlüssel machen wir am Tresen im E&nbsp;center.</p>
-              <div class="knopfreihe">
-                <a class="knopf knopf-anruf" href="tel:+4917684861848">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M5.2 3.5h3.2l1.6 4.3-2.1 1.4a11.4 11.4 0 0 0 6.9 6.9l1.4-2.1 4.3 1.6v3.2a1.8 1.8 0 0 1-1.9 1.8A16.6 16.6 0 0 1 3.4 5.4a1.8 1.8 0 0 1 1.8-1.9Z"/></svg>
-                  0176 84861848 anrufen</a>
-                <a class="knopf knopf-wa" href="https://wa.me/4917684861848">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 3.6a8.4 8.4 0 0 0-7.3 12.6L3.6 20.4l4.3-1.1A8.4 8.4 0 1 0 12 3.6Z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M8.8 9.4c.4 2.6 2.6 4.9 5.6 5.7"/></svg>
-                  WhatsApp schreiben</a>
-              </div>
+      <div class="tuer roll">
+        <div class="blatt" aria-hidden="true"></div>
+        <svg class="tuerblatt" aria-hidden="true" focusable="false">
+          <defs>
+            <radialGradient id="tuer-licht" cx=".14" cy=".06" r="1" gradientTransform="translate(.14 .06) scale(1.3 .95) translate(-.14 -.06)">
+              <stop offset="0" stop-color="#FFFFFF"/>
+              <stop offset=".55" stop-color="#FFFFFF" stop-opacity="0"/>
+            </radialGradient>
+
+            <mask id="tuer-fenster" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">
+              <rect width="100%" height="100%" fill="#FFFFFF"/>
+              <g class="profil-ort">
+                <path class="profil-form roll" fill="#000000" d="M-.295 .4038A.5 .5 0 1 1 .295 .4038L.295 1.34A.1 .1 0 0 1 .195 1.44L-.195 1.44A.1 .1 0 0 1 -.295 1.34Z"/>
+              </g>
+            </mask>
+          </defs>
+          <g mask="url(#tuer-fenster)">
+            <rect width="100%" height="100%" fill="#FBFBF9"/>
+            <rect width="100%" height="100%" fill="url(#tuer-licht)"/>
+          </g>
+        </svg>
+        <div class="tafel">
+          <h1 class="titel" id="h1"><span>Schlüsseldienst</span> <span>Ostfildern</span></h1>
+          <div class="zylinder" aria-hidden="true">
+            <picture>
+              <source type="image/avif" srcset="img/zylinder-fenster-480.avif">
+              <img class="zylinder-bild" src="img/zylinder-fenster-480.webp" width="480" height="910" loading="lazy" decoding="async" alt="">
+            </picture>
+          </div>
+          <div class="ansage">
+            <p class="unterzeile">Tür zugefallen oder abgeschlossen? Wir öffnen, auch nachts. Den Ersatzschlüssel machen wir am Tresen im E&nbsp;center.</p>
+            <div class="knopfreihe">
+              <a class="knopf knopf-anruf" href="tel:+4917684861848">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M5.2 3.5h3.2l1.6 4.3-2.1 1.4a11.4 11.4 0 0 0 6.9 6.9l1.4-2.1 4.3 1.6v3.2a1.8 1.8 0 0 1-1.9 1.8A16.6 16.6 0 0 1 3.4 5.4a1.8 1.8 0 0 1 1.8-1.9Z"/></svg>
+                0176 84861848 anrufen</a>
+              <a class="knopf knopf-wa" href="https://wa.me/4917684861848">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 3.6a8.4 8.4 0 0 0-7.3 12.6L3.6 20.4l4.3-1.1A8.4 8.4 0 1 0 12 3.6Z"/><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M8.8 9.4c.4 2.6 2.6 4.9 5.6 5.7"/></svg>
+                WhatsApp schreiben</a>
             </div>
           </div>
         </div>
@@ -467,17 +530,17 @@ html.kopf-foto .laden::before { opacity: 1; }
       <div class="laden">
         <div class="fahrt roll">
           <picture>
-            <source media="(max-aspect-ratio: 4/5)" type="image/avif" srcset="img/laden-hoch-800.avif 800w, img/laden-hoch-1200.avif 1200w, img/laden-hoch-1600.avif 1600w, img/laden-hoch-1855.avif 1855w" sizes="max(201vw, 66vh)">
-            <source media="(max-aspect-ratio: 4/5)" type="image/webp" srcset="img/laden-hoch-800.webp 800w, img/laden-hoch-1200.webp 1200w, img/laden-hoch-1600.webp 1600w, img/laden-hoch-1855.webp 1855w" sizes="max(201vw, 66vh)">
+            <source media="(max-aspect-ratio: 2/3)" type="image/avif" srcset="img/laden-schmal-710.avif 710w, img/laden-schmal-1000.avif 1000w, img/laden-schmal-1250.avif 1250w" sizes="136vw">
+            <source media="(max-aspect-ratio: 2/3)" type="image/webp" srcset="img/laden-schmal-710.webp 710w, img/laden-schmal-1000.webp 1000w, img/laden-schmal-1250.webp 1250w" sizes="136vw">
             <source type="image/avif" srcset="img/laden-quer-1600.avif 1600w, img/laden-quer-2400.avif 2400w, img/laden-quer-3226.avif 3226w" sizes="max(136vw, 126vh)">
             <img class="laden-bild" src="img/laden-quer-1600.webp" srcset="img/laden-quer-1600.webp 1600w, img/laden-quer-2400.webp 2400w, img/laden-quer-3226.webp 3226w" sizes="max(136vw, 126vh)" width="1600" height="1350" decoding="async" fetchpriority="low" alt="Der Laden von Schlüsselnotdienst Cifci im E center: die Theke, dahinter die Schlüsselwand und die roten Schilder Gravur Stempel, Schuh und Schlüsselservice, Schuhreparatur.">
           </picture>
         </div>
         <div class="schluss roll">
           <p class="schluss-titel">Am Tresen im E&nbsp;center</p>
-          <p class="schluss-zeile"><span>Liststraße 2, 73760 Ostfildern, Erdgeschoss</span>
+          <div class="schluss-zeile"><p>Liststraße 2, 73760 Ostfildern,&nbsp;Erdgeschoss</p>
             <a class="knopf knopf-route" href="https://www.google.com/maps/dir/?api=1&amp;destination=Liststra%C3%9Fe%202%2C%2073760%20Ostfildern" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 21s-6.5-6.1-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 14.9 12 21 12 21Z"/><circle cx="12" cy="9.8" r="2.3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>Route<span class="nur-sr"> (Google Maps, neuer Tab)</span></a></p>
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 21s-6.5-6.1-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 14.9 12 21 12 21Z"/><circle cx="12" cy="9.8" r="2.3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>Route<span class="nur-sr"> (Google Maps, neuer Tab)</span></a></div>
         </div>
       </div>
     </div>
@@ -523,25 +586,91 @@ html.kopf-foto .laden::before { opacity: 1; }
   var knopfreihe = d.querySelector('.ansage .knopfreihe');
   var lauf = h.classList.contains('lauf'), nativ = h.classList.contains('nativ');
 
-  var wartet = false;
+  var tuer = d.querySelector('.tuer'), zyl = d.querySelector('.zylinder'), portal = d.querySelector('.portal');
+  var tafel = d.querySelector('.tafel'), bild = d.querySelector('.laden-bild');
+  var WORTE = [{ x: 2120, y: 1340, d: 246.5 }, { x: 2215, y: 1340, d: 448 }];
+  var QUER = { x0: 403, y0: 241, w: 3225 }, SCHMAL = { x0: 1330, y0: 362, w: 1250 };
+  var hochMq = window.matchMedia ? matchMedia('(max-aspect-ratio: 2/3)') : null;
+  function messen() {
+    if (!lauf) return;
+    tafel.style.removeProperty('--kd');
+    var kd = zyl.getBoundingClientRect().width;
+    if (!kd) return;
+    var hoch = !!(hochMq && hochMq.matches), aus = hoch ? SCHMAL : QUER;
+    var k = bild.offsetWidth / aus.w;
+    var wahl = WORTE[0], s = kd / (wahl.d * k);
+    for (var i = 1; i < WORTE.length; i++) {
+      var si = kd / (WORTE[i].d * k);
+      if (Math.abs(Math.log(si / 1.06)) < Math.abs(Math.log(s / 1.06))) { wahl = WORTE[i]; s = si; }
+    }
+
+    if (s > 1.15) { s = 1.15; tafel.style.setProperty('--kd', (s * wahl.d * k).toFixed(2) + 'px'); }
+    s = Math.max(.85, s);
+    var t = tuer.getBoundingClientRect(), z = zyl.getBoundingClientRect();
+    kd = z.width;
+    var zx = z.left - t.left + kd / 2, zy = z.top - t.top + kd / 2;
+    var bl = bild.offsetLeft, bt = bild.offsetTop, bw = bild.offsetWidth, bh = bild.offsetHeight;
+    var px = bl + (wahl.x - aus.x0) * k, py = bt + (wahl.y - aus.y0) * k;
+    var W = portal.clientWidth, H = portal.clientHeight;
+    var cx = W * .5, cy = H * (hoch ? .56 : .52);
+    var tx = zx - cx - s * (px - cx), ty = zy - cy - s * (py - cy);
+
+    var D = W + 44, rand = zx - 1.45 * kd;
+    var uh = Math.min(.999, Math.max(0, rand / D)), ue = Math.min(.999, W / D);
+    var lo = -1e9, hi = 1e9, lo2 = -1e9, hi2 = 1e9;
+    [s, 1].forEach(function (m) {
+      var A = cx + m * (bl - cx), B = cx + m * (bl + bw - cx), C = cy + m * (bt - cy), E = cy + m * (bt + bh - cy);
+      lo = Math.max(lo, W - B);
+      hi = Math.min(hi, rand - A, -A / (1 - uh), -A / (1 - ue));
+      hi2 = Math.min(hi2, -C); lo2 = Math.max(lo2, H - E);
+    });
+    if (lo <= hi) tx = Math.min(hi, Math.max(lo, tx));
+    if (lo2 <= hi2) ty = Math.min(hi2, Math.max(lo2, ty));
+    portal.style.setProperty('--zx', zx.toFixed(2));
+    portal.style.setProperty('--zy', zy.toFixed(2));
+    portal.style.setProperty('--zd', kd.toFixed(2));
+    portal.style.setProperty('--tx', tx.toFixed(2));
+    portal.style.setProperty('--ty', ty.toFixed(2));
+    portal.style.setProperty('--s0', s.toFixed(4));
+  }
+
+  var marke = d.querySelector('.kopf .marke-link'), kopf = d.querySelector('.kopf'), kanteAlt = -1;
+  var wartet = false, pNow = 0;
   function stellen() {
     wartet = false;
     if (lauf) {
       var weg = strecke.offsetHeight - innerHeight;
       var p = weg > 0 ? (scrollY - strecke.offsetTop) / weg : 1;
       p = p < 0 ? 0 : p > 1 ? 1 : p;
+      pNow = p;
       if (!nativ) strecke.style.setProperty('--p', p.toFixed(4));
       h.classList.toggle('leiste-da', p >= .4);
       h.classList.toggle('strecke-an', p > 0 && p < 1);
+      h.classList.toggle('schluss-an', p >= .76);
 
-      h.classList.toggle('kopf-foto', p > .84 && strecke.getBoundingClientRect().bottom > innerHeight * .55);
+      var imBild = strecke.getBoundingClientRect().bottom > innerHeight * .55;
+      var kante = tuer.getBoundingClientRect().right, m = marke.getBoundingClientRect();
+      var foto = imBild && kante <= m.left + 8;
+      h.classList.toggle('kopf-frei', imBild);
+      h.classList.toggle('kopf-foto', foto);
+      h.classList.toggle('marke-flaeche', imBild && !foto && kante < m.right + 120);
+      var k = Math.max(0, Math.round(kante));
+      if (foto && k !== kanteAlt) { kanteAlt = k; kopf.style.setProperty('--kante', k + 'px'); }
     } else {
       h.classList.toggle('leiste-da', knopfreihe.getBoundingClientRect().bottom < 0);
     }
   }
+  messen();
   stellen();
   addEventListener('scroll', function () { if (!wartet) { wartet = true; requestAnimationFrame(stellen); } }, { passive: true });
-  addEventListener('resize', stellen);
+
+  if (lauf) d.addEventListener('focusin', function (e) {
+    var ziel = e.target, weg = strecke.offsetHeight - innerHeight;
+    if (tuer.contains(ziel) && pNow > .09) scrollTo(0, strecke.offsetTop);
+    else if (ziel.closest && ziel.closest('.schluss') && pNow < .95) scrollTo(0, strecke.offsetTop + weg * .95);
+  });
+  addEventListener('resize', function () { messen(); stellen(); });
+  if (lauf && d.fonts && d.fonts.ready) d.fonts.ready.then(messen);
 })();
 </script>
 </body>
